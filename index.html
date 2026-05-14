@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Propuestas | Selección de Diseño</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Contenedor de la imagen con Blur */
+        .preview-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            aspect-ratio: 16/10;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(4px) brightness(0.7);
+            transition: all 0.5s ease;
+            transform: scale(1.05);
+        }
+
+        .card:hover .preview-img {
+            filter: blur(0) brightness(1);
+            transform: scale(1);
+        }
+
+        /* Botones con Glow */
+        .btn-glow {
+            position: relative;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-p1 { background: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .btn-p2 { background: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
+        .btn-p3 { background: #f43f5e; box-shadow: 0 0 15px rgba(244, 63, 94, 0.5); }
+
+        .card:hover .btn-p1 { box-shadow: 0 0 25px rgba(59, 130, 246, 0.8); transform: translateY(-2px); }
+        .card:hover .btn-p2 { box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); transform: translateY(-2px); }
+        .card:hover .btn-p3 { box-shadow: 0 0 25px rgba(244, 63, 94, 0.8); transform: translateY(-2px); }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <header class="glass-header py-10 mb-16 text-center">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter">
+            REDISEÑO <span class="text-blue-500">HOME</span>
+        </h1>
+        <p class="text-slate-400 mt-2 font-light">Seleccione una propuesta visual para explorar los detalles</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            
+            <!-- Propuesta 1 -->
+            <div class="card flex flex-col items-center">
+                <span class="mb-4 text-xs font-bold tracking-[0.3em] text-blue-400 uppercase">Concepto 01</span>
+                <div class="preview-container w-full border border-white/10 shadow-2xl">
+                    <img src="assets/img/propuesta-1.png" alt="Propuesta 1" class="preview-img">
+                </div>
+                <h2 class="text-2xl font-black mt-6 mb-6">PROPUESTA 1</h2>
+                <a href="propuesta-1.html" class="btn-glow btn-p1 px-8 py-4 rounded-full font-bold w-full text-center">
+                    Ver Diseño →
+                </a>
+            </div>
+
+            <!-- Propuesta 2 -->
+            <div class="card flex flex-col items-center">
+                <span class="mb-4 text-xs font-bold tracking-[0.3em] text-emerald-400 uppercase">Concepto 02</span>
+                <div class="preview-container w-full border border-white/10 shadow-2xl">
+                    <img src="assets/img/propuesta-2.png" alt="Propuesta 2" class="preview-img">
+                </div>
+                <h2 class="text-2xl font-black mt-6 mb-6">PROPUESTA 2</h2>
+                <a href="propuesta-2.html" class="btn-glow btn-p2 px-8 py-4 rounded-full font-bold w-full text-center">
+                    Ver Diseño →
+                </a>
+            </div>
+
+            <!-- Propuesta 3 -->
+            <div class="card flex flex-col items-center">
+                <span class="mb-4 text-xs font-bold tracking-[0.3em] text-rose-400 uppercase">Concepto 03</span>
+                <div class="preview-container w-full border border-white/10 shadow-2xl">
+                    <img src="assets/img/propuesta-3.png" alt="Propuesta 3" class="preview-img">
+                </div>
+                <h2 class="text-2xl font-black mt-6 mb-6">PROPUESTA 3</h2>
+                <a href="propuesta-3.html" class="btn-glow btn-p3 px-8 py-4 rounded-full font-bold w-full text-center">
+                    Ver Diseño →
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="mt-24 text-center">
+        <div class="h-[1px] w-20 bg-blue-500 mx-auto mb-6"></div>
+        <p class="text-slate-500 text-xs tracking-widest uppercase">
+            Chile 2026 &bull; Creative Full Stack Dev
+        </p>
+    </footer>
+
+</body>
+</html>

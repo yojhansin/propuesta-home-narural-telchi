@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Telchi | Farmacia Natural</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --nt-green: #073f2f;
+      --nt-green-2: #0f5a42;
+      --nt-light: #fbfaf5;
+      --nt-soft: #eef7ea;
+      --nt-lime: #d9f99d;
+      --nt-text: #24342e;
+      --nt-muted: #6f7d75;
+      --nt-border: rgba(7, 63, 47, .12);
+      --nt-shadow: 0 24px 70px rgba(7, 63, 47, .12);
+      --nt-radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--nt-light);
+      color: var(--nt-text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .top-bar {
+      background: var(--nt-green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      text-align: center;
+    }
+
+    .navbar-custom {
+      background: rgba(251, 250, 245, .92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--nt-border);
+      padding: 14px 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--nt-green);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 21px;
+      flex: 0 0 auto;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      color: var(--nt-green);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--nt-green-2);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .navbar-nav .nav-link {
+      color: #59635d;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 10px 14px !important;
+      border-radius: 999px;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--nt-green);
+      background: rgba(7, 63, 47, .06);
+    }
+
+    .btn-nt-primary {
+      background: var(--nt-green);
+      border: 1px solid var(--nt-green);
+      color: #fff;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(7, 63, 47, .16);
+    }
+
+    .btn-nt-primary:hover {
+      background: #0b4e3b;
+      border-color: #0b4e3b;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-nt-outline {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--nt-border);
+      color: var(--nt-green);
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-weight: 700;
+    }
+
+    .btn-nt-outline:hover {
+      background: #fff;
+      color: var(--nt-green);
+      border-color: rgba(7, 63, 47, .22);
+    }
+
+    .section-padding {
+      padding: 90px 0;
+    }
+
+    .hero {
+      position: relative;
+      background: var(--nt-light);
+      overflow: hidden;
+      padding: 82px 0 70px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(65px);
+      opacity: .55;
+      z-index: 0;
+    }
+
+    .hero::before {
+      background: #c8f3c4;
+      top: 40px;
+      right: -150px;
+    }
+
+    .hero::after {
+      background: #b9ead8;
+      bottom: 0;
+      left: -160px;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .75);
+      border: 1px solid var(--nt-border);
+      border-radius: 999px;
+      padding: 9px 14px;
+      color: var(--nt-green);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(7, 63, 47, .06);
+    }
+
+    .hero-title {
+      margin-top: 22px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: -.07em;
+      font-weight: 800;
+      color: var(--nt-green);
+    }
+
+    .hero-text {
+      margin-top: 22px;
+      max-width: 650px;
+      color: var(--nt-muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .stats-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 560px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--nt-border);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(7, 63, 47, .05);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--nt-green);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--nt-muted);
+      font-size: 13px;
+      margin-top: 7px;
+      line-height: 1.25;
+    }
+
+    .hero-visual-wrap {
+      position: relative;
+    }
+
+    .hero-visual {
+      background: #fff;
+      border: 1px solid var(--nt-border);
+      border-radius: 42px;
+      padding: 12px;
+      box-shadow: var(--nt-shadow);
+    }
+
+    .hero-image-box {
+      min-height: 520px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      background: var(--nt-green);
+    }
+
+    .hero-image-box img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      opacity: .76;
+    }
+
+    .hero-image-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 63, 47, .96), rgba(7, 63, 47, .18), transparent);
+    }
+
+    .featured-product {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 26px;
+      z-index: 2;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .16);
+    }
+
+    .discount-pill {
+      background: var(--nt-lime);
+      color: var(--nt-green);
+      border-radius: 18px;
+      padding: 8px 11px;
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: -28px;
+      top: 48px;
+      background: #fff;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 18px 45px rgba(7, 63, 47, .16);
+      z-index: 3;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      max-width: 250px;
+    }
+
+    .floating-card i {
+      font-size: 31px;
+      color: var(--nt-green);
+    }
+
+    .trust-section {
+      background: #fff;
+      padding: 24px 0;
+    }
+
+    .trust-card {
+      height: 100%;
+      background: var(--nt-light);
+      border: 1px solid var(--nt-border);
+      border-radius: 24px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: #e4f4e8;
+      color: var(--nt-green);
+      font-size: 22px;
+    }
+
+    .section-label {
+      color: var(--nt-green-2);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      color: var(--nt-green);
+      font-size: clamp(31px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -.055em;
+      line-height: 1.06;
+    }
+
+    .section-text {
+      color: var(--nt-muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .goal-card {
+      height: 100%;
+      background: #fff;
+      border: 1px solid var(--nt-border);
+      border-radius: var(--nt-radius);
+      padding: 32px;
+      transition: .25s ease;
+      box-shadow: 0 12px 35px rgba(7, 63, 47, .04);
+    }
+
+    .goal-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 55px rgba(7, 63, 47, .12);
+    }
+
+    .goal-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 22px;
+      background: var(--nt-green);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      margin-bottom: 28px;
+    }
+
+    .shop-hero {
+      background: var(--nt-green);
+      color: #fff;
+      border-radius: 34px;
+      padding: 44px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .shop-hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(217, 249, 157, .16);
+      right: -90px;
+      top: -120px;
+    }
+
+    .mini-feature {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 24px;
+      padding: 18px;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-feature i {
+      color: var(--nt-lime);
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .filter-sidebar {
+      background: var(--nt-light);
+      border: 1px solid var(--nt-border);
+      border-radius: 30px;
+      padding: 20px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+    }
+
+    .search-input-wrap i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9aa39e;
+    }
+
+    .search-input {
+      width: 100%;
+      border: 1px solid var(--nt-border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 14px 16px 14px 43px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-input:focus {
+      border-color: var(--nt-green-2);
+    }
+
+    .category-btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 0;
+      background: transparent;
+      color: #53605a;
+      border-radius: 18px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .category-btn:hover {
+      background: #fff;
+    }
+
+    .category-btn.active {
+      background: var(--nt-green);
+      color: #fff;
+    }
+
+    .help-box {
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 22px;
+    }
+
+    .product-card {
+      height: 100%;
+      background: #fff;
+      border: 1px solid var(--nt-border);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(7, 63, 47, .04);
+      transition: .25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 55px rgba(7, 63, 47, .12);
+    }
+
+    .product-img {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      background: #e7f3e9;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .45s ease;
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.06);
+    }
+
+    .product-pill,
+    .offer-pill {
+      position: absolute;
+      top: 14px;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    }
+
+    .product-pill {
+      left: 14px;
+      background: rgba(255, 255, 255, .96);
+      color: var(--nt-green);
+    }
+
+    .offer-pill {
+      right: 14px;
+      background: var(--nt-lime);
+      color: var(--nt-green);
+    }
+
+    .product-body {
+      padding: 22px;
+    }
+
+    .stars {
+      color: #f59e0b;
+      font-size: 13px;
+      margin-bottom: 9px;
+    }
+
+    .product-category {
+      color: var(--nt-green-2);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .product-title {
+      min-height: 52px;
+      color: var(--nt-green);
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .product-benefit {
+      color: var(--nt-muted);
+      font-size: 14px;
+      line-height: 1.55;
+      min-height: 44px;
+    }
+
+    .old-price {
+      color: #a8aaa8;
+      text-decoration: line-through;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .price {
+      color: var(--nt-green);
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 0;
+    }
+
+    .blog-card {
+      background: #fff;
+      border: 1px solid var(--nt-border);
+      border-radius: 30px;
+      padding: 30px;
+      height: 100%;
+      box-shadow: 0 12px 35px rgba(7, 63, 47, .04);
+    }
+
+    .footer {
+      background: var(--nt-green);
+      color: #fff;
+      padding: 64px 0;
+    }
+
+    .footer a,
+    .footer p {
+      color: rgba(255, 255, 255, .74);
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      z-index: 50;
+      box-shadow: 0 18px 40px rgba(37, 211, 102, .35);
+    }
+
+    .whatsapp-float:hover {
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        padding: 58px 0 46px;
+      }
+
+      .hero-visual {
+        margin-top: 20px;
+      }
+
+      .floating-card {
+        display: none;
+      }
+
+      .filter-sidebar {
+        position: static;
+      }
+
+      .shop-hero {
+        padding: 30px;
+      }
+
+      .section-padding {
+        padding: 68px 0;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .top-bar {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .navbar-custom {
+        padding: 10px 0;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+      }
+
+      .brand-title {
+        font-size: 15px;
+      }
+
+      .brand-subtitle {
+        font-size: 9px;
+      }
+
+      .hero-title {
+        font-size: 43px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image-box,
+      .hero-image-box img {
+        min-height: 430px;
+      }
+
+      .featured-product {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .shop-hero {
+        border-radius: 26px;
+        padding: 24px;
+      }
+
+      .product-title,
+      .product-benefit {
+        min-height: auto;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+    }
+
+    /* =============================
+       HOME PREMIUM / ADVANCED UI
+    ============================= */
+    html { scroll-behavior: smooth; }
+
+    ::selection {
+      background: var(--nt-lime);
+      color: var(--nt-green);
+    }
+
+    .top-bar {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #062d23, var(--nt-green), #0f5a42);
+      font-weight: 700;
+    }
+
+    .top-bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: translateX(-100%);
+      animation: ntShine 4.8s infinite;
+    }
+
+    @keyframes ntShine {
+      0% { transform: translateX(-100%); }
+      45%, 100% { transform: translateX(100%); }
+    }
+
+    .navbar-custom {
+      background: rgba(251, 250, 245, .82);
+      -webkit-backdrop-filter: blur(22px);
+      backdrop-filter: blur(22px);
+      transition: padding .28s ease, box-shadow .28s ease, background .28s ease;
+    }
+
+    .navbar-custom.nav-scrolled {
+      padding: 9px 0;
+      background: rgba(251, 250, 245, .95);
+      box-shadow: 0 18px 50px rgba(7, 63, 47, .08);
+    }
+
+    .brand-mark {
+      background: radial-gradient(circle at 30% 25%, #2fa876, var(--nt-green));
+      box-shadow: 0 12px 30px rgba(7, 63, 47, .18);
+    }
+
+    .btn-nt-primary {
+      position: relative;
+      overflow: hidden;
+      font-weight: 800;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+
+    .btn-nt-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+      transform: translateX(-110%);
+      transition: .45s ease;
+    }
+
+    .btn-nt-primary:hover::after { transform: translateX(110%); }
+
+    .btn-nt-outline {
+      font-weight: 800;
+      transition: transform .22s ease, background .22s ease;
+    }
+
+    .btn-nt-outline:hover { transform: translateY(-2px); }
+
+    .hero {
+      isolation: isolate;
+      padding: 96px 0 88px;
+      background:
+        radial-gradient(circle at 8% 20%, rgba(217, 249, 157, .48), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(185, 234, 216, .58), transparent 25%),
+        linear-gradient(135deg, #fffdf7 0%, #f4f7ef 48%, #eef7ea 100%);
+    }
+
+    .hero::before {
+      width: auto;
+      height: auto;
+      inset: 0;
+      border-radius: 0;
+      filter: none;
+      opacity: 1;
+      background-image:
+        linear-gradient(rgba(7, 63, 47, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 63, 47, .035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.86), transparent 82%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.86), transparent 82%);
+      z-index: -3;
+    }
+
+    .hero::after {
+      width: 980px;
+      height: 980px;
+      right: -510px;
+      top: -360px;
+      bottom: auto;
+      left: auto;
+      opacity: 1;
+      filter: blur(2px);
+      background: conic-gradient(from 180deg, rgba(7,63,47,.06), rgba(217,249,157,.4), rgba(20,118,86,.13), rgba(7,63,47,.06));
+      animation: ntSlowRotate 22s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes ntSlowRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(35px);
+      opacity: .66;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-orb.one {
+      width: 260px;
+      height: 260px;
+      left: -95px;
+      bottom: 12%;
+      background: rgba(185, 234, 216, .78);
+      animation: ntFloatOrb 8s ease-in-out infinite;
+    }
+
+    .hero-orb.two {
+      width: 220px;
+      height: 220px;
+      right: 22%;
+      top: 18%;
+      background: rgba(217, 249, 157, .78);
+      animation: ntFloatOrb 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes ntFloatOrb {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(22px, -28px, 0) scale(1.05); }
+    }
+
+    .eyebrow {
+      background: rgba(255, 255, 255, .66);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      font-weight: 800;
+      box-shadow: 0 14px 36px rgba(7, 63, 47, .07);
+    }
+
+    .hero-title {
+      font-size: clamp(44px, 7.4vw, 86px);
+      line-height: .94;
+      letter-spacing: -.085em;
+      font-weight: 900;
+    }
+
+    .hero-title .gradient-word {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--nt-green), #147656, #8fbf3d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+
+    .hero-title .gradient-word::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      right: 8px;
+      bottom: 4px;
+      height: 13px;
+      background: rgba(217, 249, 157, .8);
+      z-index: -1;
+      border-radius: 999px;
+      transform: rotate(-1deg);
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      color: #51635a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-note i {
+      color: var(--nt-green-2);
+      font-size: 18px;
+    }
+
+    .hero-trust-strip {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--nt-green);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(7,63,47,.1);
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 800;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .68);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.65), transparent);
+      pointer-events: none;
+    }
+
+    .stat-card strong,
+    .stat-card span { position: relative; }
+
+    .hero-visual-wrap { perspective: 1400px; }
+
+    .hero-visual {
+      position: relative;
+      background: rgba(255,255,255,.72);
+      border-radius: 46px;
+      box-shadow: 0 32px 90px rgba(7, 63, 47, .22);
+      transform-style: preserve-3d;
+      transition: transform .18s ease-out;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(217,249,157,.42), rgba(255,255,255,.16));
+      z-index: -1;
+    }
+
+    .hero-image-box {
+      min-height: 560px;
+      border-radius: 36px;
+    }
+
+    .hero-image-box img.hero-main-img {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      object-fit: cover;
+      opacity: .82;
+      transform: scale(1.05);
+      animation: ntHeroZoom 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes ntHeroZoom {
+      from { transform: scale(1.04) translateX(0); }
+      to { transform: scale(1.1) translateX(-10px); }
+    }
+
+    .hero-image-box::after {
+      background:
+        linear-gradient(to top, rgba(7, 63, 47, .98), rgba(7, 63, 47, .42) 42%, rgba(7,63,47,.04)),
+        radial-gradient(circle at 75% 20%, rgba(217,249,157,.28), transparent 34%);
+      z-index: 1;
+    }
+
+    .hero-product-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .product-bottle {
+      position: absolute;
+      right: 11%;
+      top: 13%;
+      width: min(245px, 42vw);
+      aspect-ratio: 3 / 4.5;
+      border-radius: 34px 34px 22px 22px;
+      background: linear-gradient(90deg, rgba(255,255,255,.9), rgba(255,255,255,.62) 20%, rgba(229,240,226,.96) 52%, rgba(255,255,255,.55) 100%);
+      box-shadow: inset 18px 0 28px rgba(255,255,255,.75), inset -22px 0 35px rgba(7,63,47,.12), 0 38px 90px rgba(0,0,0,.26);
+      transform: rotate(7deg) translateZ(46px);
+      animation: ntBottleFloat 5.5s ease-in-out infinite;
+    }
+
+    .product-bottle::before {
+      content: "";
+      position: absolute;
+      width: 46%;
+      height: 50px;
+      left: 27%;
+      top: -42px;
+      border-radius: 16px 16px 8px 8px;
+      background: linear-gradient(90deg, #0d4d39, #156a4e, #083b2d);
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    }
+
+    .bottle-label {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 33%;
+      min-height: 34%;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f8fff2, #e8f7d8);
+      color: var(--nt-green);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px 14px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      line-height: 1.55;
+      font-size: clamp(11px, 1.5vw, 14px);
+      box-shadow: inset 0 0 0 1px rgba(7,63,47,.1);
+    }
+
+    @keyframes ntBottleFloat {
+      0%, 100% { transform: rotate(7deg) translate3d(0, 0, 46px); }
+      50% { transform: rotate(4deg) translate3d(-8px, -18px, 46px); }
+    }
+
+    .ingredient-chip {
+      position: absolute;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--nt-green);
+      background: rgba(255, 255, 255, .86);
+      border: 1px solid rgba(255,255,255,.55);
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.16);
+      font-size: 13px;
+      font-weight: 900;
+      animation: ntChipFloat 6s ease-in-out infinite;
+    }
+
+    .ingredient-chip i { color: #147656; }
+    .chip-1 { top: 20%; left: 10%; animation-delay: -.4s; }
+    .chip-2 { top: 44%; right: 4%; animation-delay: -1.7s; }
+    .chip-3 { top: 59%; left: 7%; animation-delay: -2.6s; }
+
+    @keyframes ntChipFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .featured-product {
+      z-index: 5;
+      background: rgba(255, 255, 255, .9);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.56);
+      border-radius: 30px;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, .18);
+    }
+
+    .floating-card,
+    .floating-card-secondary {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.68);
+      box-shadow: 0 22px 55px rgba(7, 63, 47, .16);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      animation: ntMicroFloat 5s ease-in-out infinite;
+    }
+
+    .floating-card-secondary {
+      position: absolute;
+      right: -22px;
+      bottom: 155px;
+      max-width: 245px;
+      border-radius: 24px;
+      padding: 18px;
+      z-index: 8;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      animation-direction: reverse;
+      animation-duration: 5.6s;
+    }
+
+    .floating-card-secondary i {
+      font-size: 31px;
+      color: var(--nt-green);
+    }
+
+    @keyframes ntMicroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 46px;
+      border: 1px solid rgba(7,63,47,.24);
+      border-radius: 999px;
+      display: grid;
+      justify-content: center;
+      padding-top: 9px;
+      opacity: .72;
+    }
+
+    .scroll-cue span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--nt-green);
+      animation: ntScrollDot 1.6s ease-in-out infinite;
+    }
+
+    @keyframes ntScrollDot {
+      0% { transform: translateY(0); opacity: .35; }
+      50% { transform: translateY(12px); opacity: 1; }
+      100% { transform: translateY(0); opacity: .35; }
+    }
+
+    .trust-card { transition: .25s ease; }
+    .trust-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(7,63,47,.09);
+    }
+
+    @media (max-width: 991px) {
+      .hero { padding: 62px 0 58px; }
+      .floating-card-secondary { display: none; }
+      .scroll-cue { display: none; }
+    }
+
+    @media (max-width: 575px) {
+      .hero { padding-top: 42px; }
+      .hero-title { font-size: 44px; letter-spacing: -.075em; }
+      .hero-trust-strip { display: grid; grid-template-columns: 1fr; }
+      .hero-image-box,
+      .hero-image-box img.hero-main-img { min-height: 470px; }
+      .product-bottle { right: 8%; top: 8%; width: 185px; }
+      .ingredient-chip { font-size: 11px; padding: 8px 10px; }
+      .chip-1 { left: 5%; top: 19%; }
+      .chip-2 { right: 4%; top: 43%; }
+      .chip-3 { left: 6%; top: 55%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    Despacho gratis por compras sobre $24.990 · Zonas extremas desde $35.990 · 10% OFF en primera compra
+  </div>
+
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="#home">
+        <span class="brand-mark"><i class="bi bi-leaf"></i></span>
+        <span>
+          <span class="brand-title d-block">Natural Telchi</span>
+          <span class="brand-subtitle d-block">Farmacia natural</span>
+        </span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Abrir menú">
+        <i class="bi bi-list fs-1 text-success"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto mb-3 mb-lg-0 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tienda">Tienda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mayoristas">Mayoristas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+        </ul>
+
+        <div class="d-flex flex-column flex-lg-row gap-2">
+          <a href="#" class="btn btn-nt-outline">Iniciar sesión</a>
+          <a href="#" class="btn btn-nt-primary"><i class="bi bi-bag me-2"></i>Carrito</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <span class="hero-orb one"></span>
+      <span class="hero-orb two"></span>
+
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 fade-up">
+            <div class="eyebrow">
+              <i class="bi bi-stars"></i>
+              Nueva experiencia natural · Compra simple y segura
+            </div>
+
+            <h1 class="hero-title">
+              Bienestar natural con una experiencia <span class="gradient-word">premium.</span>
+            </h1>
+            <p class="hero-text">
+              Suplementos en cápsulas, packs funcionales y rutinas naturales para defensas, energía, foco y cuidado diario. Un ecommerce diseñado para transmitir confianza, claridad y una compra rápida desde celular.
+            </p>
+
+            <div class="hero-actions d-flex flex-column flex-sm-row gap-3">
+              <a href="#tienda" class="btn btn-nt-primary">Comprar ahora <i class="bi bi-arrow-right ms-2"></i></a>
+              <a href="#packs" class="btn btn-nt-outline">Ver packs recomendados</a>
+            </div>
+
+            <div class="hero-note">
+              <i class="bi bi-shield-check"></i>
+              Productos naturales · Atención por WhatsApp · Despacho a todo Chile
+            </div>
+
+            <div class="hero-trust-strip">
+              <span class="hero-trust-pill"><i class="bi bi-check2-circle"></i> Pago seguro</span>
+              <span class="hero-trust-pill"><i class="bi bi-truck"></i> Envíos nacionales</span>
+              <span class="hero-trust-pill"><i class="bi bi-leaf"></i> Cápsulas vegetales</span>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <strong data-counter="20000">0</strong>
+                <span>clientes acompañados</span>
+              </div>
+              <div class="stat-card">
+                <strong>Vidrio</strong>
+                <span>envases conscientes</span>
+              </div>
+              <div class="stat-card">
+                <strong>Chile</strong>
+                <span>despacho nacional</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 fade-up">
+            <div class="hero-visual-wrap">
+              <div class="floating-card">
+                <i class="bi bi-shield-check"></i>
+                <div>
+                  <strong class="d-block text-success-emphasis">Compra segura</strong>
+                  <small class="text-secondary">Pago online o transferencia</small>
+                </div>
+              </div>
+
+              <div class="floating-card-secondary">
+                <i class="bi bi-graph-up-arrow"></i>
+                <div>
+                  <strong class="d-block text-success-emphasis">Pack destacado</strong>
+                  <small class="text-secondary">Alta intención de compra</small>
+                </div>
+              </div>
+
+              <div class="hero-visual" id="heroTilt">
+                <div class="hero-image-box">
+                  <img class="hero-main-img" src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1600&auto=format&fit=crop" alt="Suplementos naturales sobre una mesa">
+
+                  <div class="hero-product-stage">
+                    <div class="product-bottle">
+                      <div class="bottle-label">
+                        <span>Natural Telchi<br>DEFENSAS<br>Vitamina C · Zinc · Magnesio</span>
+                      </div>
+                    </div>
+                    <span class="ingredient-chip chip-1"><i class="bi bi-flower1"></i> Vitamina C</span>
+                    <span class="ingredient-chip chip-2"><i class="bi bi-lightning-charge"></i> Magnesio</span>
+                    <span class="ingredient-chip chip-3"><i class="bi bi-stars"></i> Zinc</span>
+                  </div>
+
+                  <div class="featured-product">
+                    <div class="d-flex justify-content-between gap-3 align-items-start">
+                      <div>
+                        <p class="product-category mb-2">Pack recomendado</p>
+                        <h3 class="fw-bold text-success-emphasis mb-2">Defensas naturales</h3>
+                        <p class="text-secondary mb-0">Una rutina simple para fortalecer la propuesta de valor desde el primer pantallazo.</p>
+                      </div>
+                      <span class="discount-pill">-20%</span>
+                    </div>
+                    <a href="#tienda" class="btn btn-nt-primary w-100 mt-4">Agregar al carrito</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust-section">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-sm-6 col-lg-3 fade-up">
+            <div class="trust-card">
+              <div class="icon-box"><i class="bi bi-truck"></i></div>
+              <div>
+                <strong class="d-block text-success-emphasis">Despacho nacional</strong>
+                <small class="text-secondary">Gratis sobre el mínimo de compra</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 fade-up">
+            <div class="trust-card">
+              <div class="icon-box"><i class="bi bi-leaf"></i></div>
+              <div>
+                <strong class="d-block text-success-emphasis">Cápsulas vegetales</strong>
+                <small class="text-secondary">Rutinas simples y naturales</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 fade-up">
+            <div class="trust-card">
+              <div class="icon-box"><i class="bi bi-recycle"></i></div>
+              <div>
+                <strong class="d-block text-success-emphasis">Envases conscientes</strong>
+                <small class="text-secondary">Compromiso ambiental</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 fade-up">
+            <div class="trust-card">
+              <div class="icon-box"><i class="bi bi-whatsapp"></i></div>
+              <div>
+                <strong class="d-block text-success-emphasis">Asesoría WhatsApp</strong>
+                <small class="text-secondary">Ayuda para elegir tu producto</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section class="section-padding" id="packs">
+      <div class="container">
+        <div class="row align-items-end justify-content-between g-4 mb-5">
+          <div class="col-lg-7 fade-up">
+            <p class="section-label">Compra por objetivo</p>
+            <h2 class="section-title">Encuentra tu rutina natural según lo que necesitas hoy.</h2>
+          </div>
+          <div class="col-lg-auto fade-up">
+            <a href="#tienda" class="btn btn-nt-outline">Ver categorías</a>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4 fade-up">
+            <div class="goal-card">
+              <div class="goal-icon"><i class="bi bi-shield-check"></i></div>
+              <h3 class="fw-bold text-success-emphasis">Defensas</h3>
+              <p class="text-secondary mb-4">Vitamina C, zinc y packs para el cuidado diario.</p>
+              <a href="#tienda" class="fw-bold text-success">Comprar categoría <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4 fade-up">
+            <div class="goal-card">
+              <div class="goal-icon"><i class="bi bi-heart-pulse"></i></div>
+              <h3 class="fw-bold text-success-emphasis">Energía y foco</h3>
+              <p class="text-secondary mb-4">Opciones para concentración, memoria y rendimiento.</p>
+              <a href="#tienda" class="fw-bold text-success">Comprar categoría <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4 fade-up">
+            <div class="goal-card">
+              <div class="goal-icon"><i class="bi bi-stars"></i></div>
+              <h3 class="fw-bold text-success-emphasis">Belleza natural</h3>
+              <p class="text-secondary mb-4">Apoyo anti-age, antioxidantes y cuidado personal.</p>
+              <a href="#tienda" class="fw-bold text-success">Comprar categoría <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIENDA -->
+    <section class="section-padding bg-white" id="tienda">
+      <div class="container">
+        <div class="shop-hero mb-5 fade-up">
+          <div class="row align-items-center g-4 position-relative">
+            <div class="col-lg-6">
+              <p class="section-label text-lime mb-2" style="color: var(--nt-lime);">Tienda Natural Telchi</p>
+              <h2 class="display-5 fw-bold lh-1 mb-3">Suplementos naturales online.</h2>
+              <p class="mb-0" style="color: rgba(255,255,255,.78); line-height: 1.75;">
+                Explora productos por objetivo, compara packs y compra en pocos pasos desde cualquier dispositivo.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="row g-3">
+                <div class="col-sm-4">
+                  <div class="mini-feature">
+                    <i class="bi bi-check-circle"></i>
+                    <p class="mb-0 fw-semibold">Pago seguro</p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="mini-feature">
+                    <i class="bi bi-bank"></i>
+                    <p class="mb-0 fw-semibold">Transferencia disponible</p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="mini-feature">
+                    <i class="bi bi-truck"></i>
+                    <p class="mb-0 fw-semibold">Despacho a todo Chile</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-3 fade-up">
+            <aside class="filter-sidebar">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h3 class="h6 fw-bold text-success-emphasis mb-0">Filtrar por</h3>
+                <i class="bi bi-sliders text-success"></i>
+              </div>
+
+              <div class="search-input-wrap mb-4">
+                <i class="bi bi-search"></i>
+                <input id="productSearch" class="search-input" type="text" placeholder="Buscar producto">
+              </div>
+
+              <div class="d-grid gap-2" id="categoryFilters">
+                <button class="category-btn active" data-category="Todos">Todos <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Defensas">Defensas <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Magnesios">Magnesios <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Detox">Detox <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Belleza">Belleza <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Anti-age">Anti-age <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Concentración">Concentración <i class="bi bi-chevron-down"></i></button>
+                <button class="category-btn" data-category="Ofertas">Ofertas <i class="bi bi-chevron-down"></i></button>
+              </div>
+
+              <div class="help-box">
+                <p class="fw-bold text-success-emphasis mb-2">¿No sabes qué elegir?</p>
+                <p class="text-secondary small mb-3">Escríbenos por WhatsApp y te ayudamos según tu objetivo.</p>
+                <a href="https://wa.me/56965140340" class="btn btn-nt-outline w-100" target="_blank">Pedir asesoría</a>
+              </div>
+            </aside>
+          </div>
+
+          <div class="col-lg-9 fade-up">
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
+              <div>
+                <p class="text-secondary small mb-1" id="productCount">Mostrando 8 productos</p>
+                <h3 class="h2 fw-bold text-success-emphasis mb-0" id="categoryTitle">Todos los productos</h3>
+              </div>
+              <select class="form-select rounded-pill border-success-subtle shadow-none" style="max-width: 245px;">
+                <option>Ordenar por destacados</option>
+                <option>Precio menor a mayor</option>
+                <option>Precio mayor a menor</option>
+                <option>Nuevos primero</option>
+              </select>
+            </div>
+
+            <div class="row g-4" id="productsGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="section-padding" id="blog">
+      <div class="container">
+        <div class="row g-4 align-items-end">
+          <div class="col-lg-5 fade-up">
+            <p class="section-label">Educación natural</p>
+            <h2 class="section-title">Contenido que ayuda a comprar con confianza.</h2>
+            <p class="section-text mt-3">
+              El blog puede mostrar beneficios, usos responsables y guías simples para cada ingrediente o categoría.
+            </p>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-4">
+              <div class="col-md-6 fade-up">
+                <article class="blog-card">
+                  <p class="product-category">Blog</p>
+                  <h3 class="fw-bold text-success-emphasis">¿Conoces la Berberina?</h3>
+                  <p class="text-secondary">Guía simple sobre su origen vegetal y usos populares.</p>
+                  <a href="#" class="fw-bold text-success">Leer artículo <i class="bi bi-arrow-right ms-1"></i></a>
+                </article>
+              </div>
+              <div class="col-md-6 fade-up">
+                <article class="blog-card">
+                  <p class="product-category">Blog</p>
+                  <h3 class="fw-bold text-success-emphasis">Zinc Bisglicinato</h3>
+                  <p class="text-secondary">Por qué este mineral es clave en rutinas de bienestar.</p>
+                  <a href="#" class="fw-bold text-success">Leer artículo <i class="bi bi-arrow-right ms-1"></i></a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAYORISTAS / CATALOGO placeholders -->
+    <section class="section-padding bg-white" id="mayoristas">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7 fade-up">
+            <p class="section-label">Mayoristas</p>
+            <h2 class="section-title">Venta mayorista para tiendas, farmacias naturales y distribuidores.</h2>
+            <p class="section-text mt-3">Sección preparada para captar clientes B2B con formulario, beneficios comerciales y catálogo descargable.</p>
+          </div>
+          <div class="col-lg-5 fade-up">
+            <div class="goal-card">
+              <h3 class="fw-bold text-success-emphasis">Solicita información mayorista</h3>
+              <p class="text-secondary">Completa tus datos y recibe condiciones comerciales.</p>
+              <a href="https://wa.me/56965140340" target="_blank" class="btn btn-nt-primary w-100">Contactar por WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" id="catalogo">
+      <div class="container text-center fade-up">
+        <p class="section-label">Catálogo de productos</p>
+        <h2 class="section-title mx-auto" style="max-width: 780px;">Una vista clara de todos los suplementos disponibles.</h2>
+        <p class="section-text mx-auto mt-3" style="max-width: 670px;">Esta sección puede convertirse en catálogo descargable PDF o listado visual por líneas de producto.</p>
+        <a href="#tienda" class="btn btn-nt-primary mt-4">Ver productos</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-6">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="brand-mark bg-white text-success"><i class="bi bi-leaf"></i></span>
+            <span>
+              <span class="d-block fw-bold fs-5">Natural Telchi</span>
+              <span class="brand-subtitle text-white-50">Farmacia natural</span>
+            </span>
+          </div>
+          <p style="max-width: 480px; line-height: 1.8;">
+            Envasadora de suplementos alimentarios naturales. Compra online, despacho a todo Chile y atención por WhatsApp.
+          </p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h5 class="fw-bold mb-3">Navegación</h5>
+          <div class="d-grid gap-2">
+            <a href="#home">Home</a>
+            <a href="#tienda">Tienda</a>
+            <a href="#blog">Blog</a>
+            <a href="#mayoristas">Mayoristas</a>
+            <a href="#catalogo">Catálogo</a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h5 class="fw-bold mb-3">Contacto</h5>
+          <p class="mb-2">Freire 361, San Bernardo</p>
+          <p class="mb-2">+56 9 6514 0340</p>
+          <p class="mb-0">10% OFF en primera compra</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/56965140340" target="_blank" class="whatsapp-float" aria-label="WhatsApp Natural Telchi">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Pack Defensas",
+        category: "Defensas",
+        price: 27176,
+        oldPrice: 33970,
+        tag: "Nuevo",
+        benefit: "Vitamina C + Magnesio + Zinc",
+        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 2,
+        name: "Tetr4Magnesio 120 cápsulas",
+        category: "Magnesios",
+        price: 29990,
+        oldPrice: null,
+        tag: "Top ventas",
+        benefit: "Apoyo muscular y bienestar diario",
+        image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 3,
+        name: "Berberina 60 cápsulas",
+        category: "Detox",
+        price: 17900,
+        oldPrice: null,
+        tag: "Natural",
+        benefit: "Extracto vegetal en cápsulas",
+        image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 4,
+        name: "Vitamina C Neutra no ácida",
+        category: "Defensas",
+        price: 11990,
+        oldPrice: null,
+        tag: "Nuevo",
+        benefit: "120 cápsulas vegetales",
+        image: "https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 5,
+        name: "Pack Detox",
+        category: "Detox",
+        price: 39990,
+        oldPrice: 43410,
+        tag: "Pack",
+        benefit: "Rutina completa de bienestar",
+        image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 6,
+        name: "Omega 3 Premium",
+        category: "Anti-age",
+        price: 15990,
+        oldPrice: null,
+        tag: "Premium",
+        benefit: "800 EPA / 400 DHA",
+        image: "https://images.unsplash.com/photo-1550572017-edd951aa8f3f?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 7,
+        name: "Zinc Bisglicinato 20 mg",
+        category: "Defensas",
+        price: 9490,
+        oldPrice: null,
+        tag: "Esencial",
+        benefit: "60 cápsulas vegetales",
+        image: "https://images.unsplash.com/photo-1573883431205-98b5f10aaedb?q=80&w=1200&auto=format&fit=crop"
+      },
+      {
+        id: 8,
+        name: "Pack Concentración",
+        category: "Concentración",
+        price: 26990,
+        oldPrice: 29980,
+        tag: "Oferta",
+        benefit: "Apoyo para foco y memoria",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop"
+      }
+    ];
+
+    const productsGrid = document.getElementById("productsGrid");
+    const productSearch = document.getElementById("productSearch");
+    const productCount = document.getElementById("productCount");
+    const categoryTitle = document.getElementById("categoryTitle");
+    const categoryButtons = document.querySelectorAll(".category-btn");
+
+    let selectedCategory = "Todos";
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        maximumFractionDigits: 0
+      }).format(price);
+    }
+
+    function renderProducts() {
+      const searchTerm = productSearch.value.trim().toLowerCase();
+
+      const filtered = products.filter(product => {
+        const matchesCategory =
+          selectedCategory === "Todos" ||
+          product.category === selectedCategory ||
+          (selectedCategory === "Ofertas" && product.oldPrice);
+
+        const matchesSearch =
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.benefit.toLowerCase().includes(searchTerm) ||
+          product.category.toLowerCase().includes(searchTerm);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      productCount.textContent = `Mostrando ${filtered.length} producto${filtered.length === 1 ? "" : "s"}`;
+      categoryTitle.textContent = selectedCategory === "Todos" ? "Todos los productos" : selectedCategory;
+
+      productsGrid.innerHTML = filtered.map(product => `
+        <div class="col-sm-6 col-xl-4 product-item">
+          <article class="product-card">
+            <div class="product-img">
+              <img src="${product.image}" alt="${product.name}">
+              <span class="product-pill">${product.tag}</span>
+              ${product.oldPrice ? `<span class="offer-pill">Oferta</span>` : ""}
+            </div>
+            <div class="product-body">
+              <div class="stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="product-category">${product.category}</p>
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-benefit">${product.benefit}</p>
+              <div class="d-flex align-items-end justify-content-between gap-2 mt-4">
+                <div>
+                  ${product.oldPrice ? `<p class="old-price">${formatPrice(product.oldPrice)}</p>` : ""}
+                  <p class="price">${formatPrice(product.price)}</p>
+                </div>
+                <button class="btn btn-nt-primary btn-sm px-3 py-2 add-to-cart" data-product="${product.name}">
+                  <i class="bi bi-bag me-1"></i>Agregar
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      `).join("");
+
+      document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", () => {
+          const productName = button.dataset.product;
+          button.innerHTML = `<i class="bi bi-check2 me-1"></i>Agregado`;
+          button.classList.add("disabled");
+          setTimeout(() => {
+            button.innerHTML = `<i class="bi bi-bag me-1"></i>Agregar`;
+            button.classList.remove("disabled");
+          }, 1300);
+          console.log(`Producto agregado: ${productName}`);
+        });
+      });
+    }
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        categoryButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        renderProducts();
+      });
+    });
+
+    productSearch.addEventListener("input", renderProducts);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade-up").forEach(element => observer.observe(element));
+
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        const navbar = document.getElementById("mainNavbar");
+        if (navbar.classList.contains("show")) {
+          bootstrap.Collapse.getInstance(navbar).hide();
+        }
+      });
+    });
+
+    // Navbar premium effect on scroll
+    const navbarCustom = document.querySelector(".navbar-custom");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 24) {
+        navbarCustom.classList.add("nav-scrolled");
+      } else {
+        navbarCustom.classList.remove("nav-scrolled");
+      }
+    });
+
+    // Hero 3D tilt interaction
+    const heroTilt = document.getElementById("heroTilt");
+    if (heroTilt && window.matchMedia("(pointer: fine)").matches) {
+      heroTilt.addEventListener("mousemove", event => {
+        const rect = heroTilt.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        heroTilt.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+      });
+
+      heroTilt.addEventListener("mouseleave", () => {
+        heroTilt.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0)";
+      });
+    }
+
+    // Animated number counter
+    const counters = document.querySelectorAll("[data-counter]");
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const element = entry.target;
+        const target = Number(element.dataset.counter || 0);
+        const duration = 1300;
+        const start = performance.now();
+
+        function updateCounter(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(target * eased);
+          element.textContent = `+${new Intl.NumberFormat("es-CL").format(current)}`;
+          if (progress < 1) requestAnimationFrame(updateCounter);
+        }
+
+        requestAnimationFrame(updateCounter);
+        counterObserver.unobserve(element);
+      });
+    }, { threshold: .55 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    renderProducts();
+  </script>
+</body>
+</html>

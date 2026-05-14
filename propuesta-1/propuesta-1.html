@@ -1,0 +1,2322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Telchi | Home V2</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Source+Sans+3:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-950: #08231b;
+      --green-900: #0b3b2c;
+      --green-800: #10543d;
+      --green-700: #167456;
+      --green-600: #219367;
+      --cream: #fbf7eb;
+      --cream-2: #fffaf0;
+      --paper: #ffffff;
+      --lime: #d9f99d;
+      --yellow: #f8c83f;
+      --orange: #f59e0b;
+      --leaf: #e8f6df;
+      --mint: #dff3e4;
+      --text: #15271f;
+      --muted: #6c7b71;
+      --line: rgba(8, 35, 27, .1);
+      --line-2: rgba(8, 35, 27, .16);
+      --shadow-soft: 0 18px 48px rgba(8, 35, 27, .08);
+      --shadow-card: 0 24px 70px rgba(8, 35, 27, .12);
+      --shadow-strong: 0 34px 100px rgba(8, 35, 27, .2);
+      --radius-xl: 36px;
+      --radius-lg: 28px;
+      --radius-md: 22px;
+      --radius-sm: 16px;
+      --pill: 999px;
+      --ease: cubic-bezier(.2, .8, .2, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
+    ::selection { background: var(--lime); color: var(--green-900); }
+
+    .site-page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(217, 249, 157, .28), transparent 28%),
+        radial-gradient(circle at 92% 4%, rgba(255, 225, 125, .22), transparent 24%),
+        var(--cream);
+    }
+
+    .top-strip {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      background: linear-gradient(90deg, #061c15, #0b3b2c, #17694e);
+      color: rgba(255,255,255,.94);
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-strip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: translateX(-100%);
+      animation: stripShine 5s infinite;
+    }
+
+    .top-strip span {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @keyframes stripShine {
+      0%, 35% { transform: translateX(-100%); }
+      78%, 100% { transform: translateX(100%); }
+    }
+
+    /* =============================
+       nav flotante
+      
+    ============================= */
+    .main-nav {
+      position: fixed;
+      top: 38px;
+      left: 0;
+      right: 0;
+      z-index: 70;
+      background: transparent;
+      border: 0;
+      padding: 18px 0 0;
+      transition: .28s var(--ease);
+      pointer-events: none;
+    }
+
+    .main-nav.scrolled {
+      top: 0;
+      padding: 12px 0 0;
+      background: transparent;
+      border: 0;
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: grid;
+      grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr);
+      align-items: center;
+      gap: 18px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .brand,
+    .nav-links,
+    .nav-actions { pointer-events: auto; }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      justify-self: start;
+      height: 58px;
+      min-width: auto;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo-wrap {
+      height: 58px;
+      max-width: 250px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 7px 14px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 18px 50px rgba(0,0,0,.12);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      transition: .28s var(--ease);
+    }
+
+    .brand-logo {
+      display: block;
+      width: auto;
+      max-width: 220px;
+      height: 100%;
+      max-height: 46px;
+      object-fit: contain;
+    }
+
+    .main-nav.scrolled .brand-logo-wrap {
+      background: rgba(255,255,255,.76);
+      border-color: rgba(8,35,27,.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-self: center;
+      gap: 5px;
+      padding: 6px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.14);
+      box-shadow: 0 18px 50px rgba(0,0,0,.10);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      transition: .28s var(--ease);
+    }
+
+    .nav-links a {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border-radius: var(--pill);
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      font-weight: 900;
+      transition: .22s var(--ease);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green-900);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 10px 24px rgba(8,35,27,.12);
+    }
+
+    .main-nav.scrolled .nav-links {
+      border-color: var(--line);
+      background: rgba(255,255,255,.70);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .main-nav.scrolled .nav-links a { color: #65766c; }
+
+    .main-nav.scrolled .nav-links a:hover,
+    .main-nav.scrolled .nav-links a.active {
+      color: #fff;
+      background: var(--green-900);
+      box-shadow: 0 10px 24px rgba(8,35,27,.18);
+    }
+
+    .nav-actions {
+      min-width: auto;
+      display: flex;
+      justify-content: flex-end;
+      justify-self: end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn,
+    .btn-primary-custom,
+    .btn-soft-custom {
+      border: 0;
+      outline: 0;
+      transition: .22s var(--ease);
+    }
+
+    .icon-btn {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 50%;
+      background: rgba(255,255,255,.16);
+      color: #fffdf4;
+      box-shadow: none;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .icon-btn:hover {
+      background: rgba(255,255,255,.88);
+      color: var(--green-900);
+      transform: translateY(-2px);
+    }
+
+    .main-nav.scrolled .icon-btn {
+      border-color: var(--line);
+      background: rgba(255,255,255,.72);
+      color: var(--green-900);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      min-width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255,255,255,.65);
+      border-radius: var(--pill);
+      background: var(--yellow);
+      color: var(--green-900);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .btn-primary-custom {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border-radius: var(--pill);
+      background: var(--green-900);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 16px 36px rgba(8,35,27,.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-custom::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      transform: translateX(-110%);
+      transition: .5s var(--ease);
+    }
+
+    .btn-primary-custom:hover::after { transform: translateX(110%); }
+    .btn-primary-custom:hover { background: var(--green-800); color: #fff; transform: translateY(-2px); }
+
+    .btn-soft-custom {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.16);
+      color: #fffdf4;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: none;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .btn-soft-custom:hover {
+      background: rgba(255,255,255,.88);
+      color: var(--green-900);
+      transform: translateY(-2px);
+    }
+
+    .main-nav.scrolled .btn-soft-custom {
+      border-color: var(--line);
+      background: rgba(255,255,255,.72);
+      color: var(--green-900);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mobile-menu { display: none; }
+
+    /* =============================
+       MOBILE MENU DRAWER
+    ============================= */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(6, 28, 21, .48);
+      opacity: 0;
+      pointer-events: none;
+      transition: .28s var(--ease);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .menu-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 130;
+      width: min(420px, calc(100% - 28px));
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 88% 0%, rgba(217,249,157,.28), transparent 30%),
+        rgba(255, 255, 255, .92);
+      border: 1px solid rgba(255,255,255,.66);
+      box-shadow: 0 34px 100px rgba(0,0,0,.24);
+      transform: translateX(calc(100% + 22px));
+      transition: transform .36s var(--ease);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(24px) saturate(1.25);
+      -webkit-backdrop-filter: blur(24px) saturate(1.25);
+    }
+
+    .mobile-drawer.show { transform: translateX(0); }
+
+    .drawer-head {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-bottom: 1px solid rgba(8,35,27,.08);
+    }
+
+    .drawer-logo {
+      max-width: 190px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .drawer-close {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(8,35,27,.07);
+      color: var(--green-900);
+      transition: .22s var(--ease);
+    }
+
+    .drawer-close:hover {
+      transform: rotate(90deg);
+      background: rgba(8,35,27,.12);
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+    }
+
+    .drawer-section-label {
+      color: var(--green-700);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin: 0 0 12px;
+    }
+
+    .drawer-links {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .drawer-link {
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
+      border: 1px solid rgba(8,35,27,.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,.64);
+      color: var(--green-900);
+      font-size: 16px;
+      font-weight: 900;
+      transition: .22s var(--ease);
+    }
+
+    .drawer-link:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .drawer-category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .drawer-category {
+      min-height: 116px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid rgba(8,35,27,.08);
+      border-radius: 22px;
+      background: rgba(255,255,255,.66);
+      color: var(--green-900);
+      transition: .22s var(--ease);
+    }
+
+    .drawer-category:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .drawer-category i {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--mint);
+      color: var(--green-800);
+      font-size: 17px;
+    }
+
+    .drawer-category strong {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .drawer-category span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .drawer-footer {
+      padding: 18px;
+      border-top: 1px solid rgba(8,35,27,.08);
+    }
+
+    /* =============================
+       HERO
+    ============================= */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      padding: 150px 0 76px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 78% 16%, rgba(217,249,157,.2), transparent 28%),
+        linear-gradient(145deg, #103c2d 0%, #174f39 48%, #0b3227 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 78%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 78%);
+      z-index: -3;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -8%;
+      right: -8%;
+      bottom: -78px;
+      height: 170px;
+      background: var(--cream);
+      clip-path: ellipse(58% 58% at 50% 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .floating-leaf {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      opacity: .18;
+      color: var(--lime);
+      pointer-events: none;
+      animation: leafFloat 8s ease-in-out infinite;
+    }
+
+    .leaf-1 { left: 4%; top: 18%; animation-delay: -.8s; }
+    .leaf-2 { right: 6%; top: 14%; animation-delay: -2.2s; }
+    .leaf-3 { left: 12%; bottom: 24%; animation-delay: -3.5s; }
+
+    @keyframes leafFloat {
+      0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+      50% { transform: translate3d(16px,-18px,0) rotate(8deg); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+      gap: 42px;
+      align-items: center;
+      min-height: 560px;
+      padding-bottom: 36px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      color: var(--lime);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 900;
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-title {
+      max-width: 680px;
+      margin: 22px 0 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: .9;
+      letter-spacing: -.06em;
+      font-weight: 900;
+      color: #fffdf4;
+    }
+
+    .hero-title span {
+      color: var(--yellow);
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 20px 0 0;
+      color: rgba(255,255,255,.76);
+      font-size: 18px;
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .proof-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.85);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 540px;
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+
+    .basket-card {
+      position: relative;
+      width: min(100%, 660px);
+      min-height: 470px;
+      border-radius: 44px;
+      overflow: hidden;
+      /* background:
+        radial-gradient(circle at 54% 24%, rgba(217,249,157,.28), transparent 36%),
+        rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 34px 100px rgba(0,0,0,.22);
+      backdrop-filter: blur(18px); */
+      transform-style: preserve-3d;
+      transition: transform .22s var(--ease);
+      position: relative;
+       overflow: visible;
+    }
+
+    .basket-card::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 36px;
+      width: 70%;
+      height: 38px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+    }
+
+    .basket-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      animation: heroImageBreath 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroImageBreath {
+      from { transform: scale(1.04); }
+      to { transform: scale(1.1) translateX(-8px); }
+    }
+
+    .hero-product-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: -105px;
+      z-index: 5;
+      padding: 20px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.141);
+      border: 1px solid rgba(255,255,255,.58);
+      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-product-card .label {
+      color: white;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .hero-product-card h3 {
+      color: white;
+      font-size: 24px;
+      line-height: 1.05;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .hero-product-card p {
+      color: white;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 600;
+      margin: 7px 0 0;
+    }
+
+    .discount-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 0 13px;
+      border-radius: var(--pill);
+      background: var(--yellow);
+      color: var(--green-900);
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .hero-mini-card {
+      position: absolute;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.88);
+      color: var(--green-900);
+      box-shadow: 0 22px 55px rgba(0,0,0,.16);
+      backdrop-filter: blur(16px);
+      animation: miniFloat 5.5s ease-in-out infinite;
+    }
+
+    .hero-mini-card i {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--mint);
+      color: var(--green-800);
+      font-size: 18px;
+    }
+
+    .hero-mini-card strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .hero-mini-card span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .mini-a { left: -22px; top: 72px; }
+    .mini-b { right: -12px; top: 138px; animation-delay: -2s; }
+
+    @keyframes miniFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* =============================
+       CONTENT SECTIONS
+    ============================= */
+    .section-padding { padding: 86px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      color: var(--green-700);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 900;
+      margin: 0 0 10px;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--green-900);
+      font-family: "Fraunces", serif;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 900;
+    }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.62;
+      font-weight: 500;
+      margin: 0;
+      max-width: 560px;
+    }
+
+    .offer-banner {
+      margin-top: -34px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .offer-card {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 8%, rgba(217,249,157,.5), transparent 32%),
+        linear-gradient(135deg, #fffaf0, #fff4cf 48%, #e8f6df);
+      border: 1px solid rgba(255,255,255,.68);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .offer-content {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .offer-icon {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background: var(--green-900);
+      color: var(--lime);
+      font-size: 28px;
+      box-shadow: 0 18px 45px rgba(8,35,27,.18);
+    }
+
+    .offer-card h2 {
+      color: var(--green-900);
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .offer-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .coupon-box {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .coupon-code {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px dashed rgba(8,35,27,.28);
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.72);
+      color: var(--green-900);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .slider-section { padding: 72px 0 36px; }
+
+    .promo-slider {
+      position: relative;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(255,255,255,.75);
+      background: var(--green-900);
+    }
+
+    .promo-track {
+      display: flex;
+      transition: transform .65s var(--ease);
+    }
+
+    .promo-slide {
+      min-width: 100%;
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 24px;
+      padding: 42px;
+      overflow: hidden;
+    }
+
+    .promo-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .slide-1 { background: linear-gradient(135deg, #103c2d, #1b6b4f); }
+    .slide-2 { background: linear-gradient(135deg, #fff2c2, #eff8dc); }
+    .slide-3 { background: linear-gradient(135deg, #10231d, #173f32); }
+
+    .slide-1::after { background: radial-gradient(circle at 78% 22%, rgba(217,249,157,.34), transparent 32%); }
+    .slide-2::after { background: radial-gradient(circle at 82% 18%, rgba(11,61,45,.12), transparent 32%); }
+    .slide-3::after { background: radial-gradient(circle at 78% 18%, rgba(245,158,11,.22), transparent 34%); }
+
+    .promo-copy {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 560px;
+    }
+
+    .slide-2 .promo-copy { color: var(--green-900); }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.14);
+      color: var(--lime);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .slide-2 .promo-badge {
+      background: rgba(11,61,45,.08);
+      color: var(--green-900);
+    }
+
+    .promo-copy h2 {
+      margin: 18px 0 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: .96;
+      letter-spacing: -.04em;
+      font-weight: 900;
+    }
+
+    .promo-copy p {
+      margin: 14px 0 0;
+      color: rgba(255,255,255,.75);
+      font-size: 17px;
+      line-height: 1.62;
+      font-weight: 500;
+    }
+
+    .slide-2 .promo-copy p { color: var(--muted); }
+
+    .promo-visual {
+      position: relative;
+      z-index: 2;
+      min-height: 290px;
+      display: grid;
+      place-items: center;
+    }
+
+    .promo-visual img {
+      width: min(100%, 430px);
+      max-height: 320px;
+      object-fit: contain;
+      filter: drop-shadow(0 28px 34px rgba(0,0,0,.22));
+      animation: productFloat 5.4s ease-in-out infinite;
+    }
+
+    @keyframes productFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    .slider-controls {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 22px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .slider-dots,
+    .slider-arrows {
+      display: flex;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .slider-dot {
+      width: 9px;
+      height: 9px;
+      border: 0;
+      border-radius: var(--pill);
+      background: rgba(255,255,255,.42);
+      transition: .22s var(--ease);
+    }
+
+    .slider-dot.active {
+      width: 28px;
+      background: var(--lime);
+    }
+
+    .slider-arrow {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      backdrop-filter: blur(12px);
+      transition: .22s var(--ease);
+    }
+
+    .slider-arrow:hover {
+      background: rgba(255,255,255,.22);
+      transform: translateY(-2px);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .category-feature,
+    .category-card {
+      border: 1px solid rgba(8,35,27,.08);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.82);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: .24s var(--ease);
+    }
+
+    .category-feature:hover,
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .category-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 230px;
+    }
+
+    .category-copy {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .category-copy h3,
+    .category-card h3 {
+      color: var(--green-900);
+      font-size: 25px;
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .category-copy p,
+    .category-card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      margin: 10px 0 0;
+      font-weight: 600;
+    }
+
+    .category-img {
+      min-height: 230px;
+      background: var(--leaf);
+    }
+
+    .category-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .small-category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      min-height: 230px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 24px rgba(8,35,27,.1));
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      position: relative;
+      border: 1px solid rgba(8,35,27,.08);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.86);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: .24s var(--ease);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 1 / .85;
+      background:
+        radial-gradient(circle at 50% 34%, rgba(217,249,157,.45), transparent 34%),
+        #f4f8ee;
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .45s var(--ease);
+    }
+
+    .product-card:hover .product-media img { transform: scale(1.05); }
+
+    .product-tag,
+    .product-discount {
+      position: absolute;
+      top: 12px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: var(--pill);
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
+
+    .product-tag { left: 12px; background: rgba(255,255,255,.92); color: var(--green-900); }
+    .product-discount { right: 12px; background: var(--yellow); color: var(--green-900); }
+
+    .product-body { padding: 18px; }
+
+    .stars {
+      display: flex;
+      gap: 2px;
+      color: var(--orange);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .product-category {
+      color: var(--green-700);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin: 0 0 7px;
+    }
+
+    .product-title {
+      color: var(--green-900);
+      font-size: 18px;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      margin: 0;
+      min-height: 42px;
+    }
+
+    .product-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 600;
+      margin: 9px 0 0;
+      min-height: 39px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .price-old {
+      display: block;
+      color: #9aa59f;
+      text-decoration: line-through;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .price-now {
+      display: block;
+      color: var(--green-900);
+      font-size: 21px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .add-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--green-900);
+      box-shadow: 0 12px 26px rgba(245,158,11,.2);
+      transition: .22s var(--ease);
+    }
+
+    .add-btn:hover {
+      transform: translateY(-2px) rotate(-6deg);
+      background: var(--green-900);
+      color: #fff;
+    }
+
+    .benefits-section {
+      position: relative;
+      background: var(--green-950);
+      color: #fff;
+      padding: 110px 0 86px;
+      overflow: hidden;
+    }
+
+    .benefits-section::before {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: -55px;
+      height: 110px;
+      background: var(--cream);
+      clip-path: ellipse(58% 68% at 50% 0%);
+    }
+
+    .benefits-section::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -55px;
+      height: 110px;
+      background: var(--cream);
+      clip-path: ellipse(58% 68% at 50% 100%);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr .9fr;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .benefit-card {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.06);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+    }
+
+    .benefit-card.featured {
+      background:
+        radial-gradient(circle at 80% 0%, rgba(217,249,157,.18), transparent 34%),
+        rgba(255,255,255,.08);
+    }
+
+    .benefit-card i {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(217,249,157,.16);
+      color: var(--lime);
+      font-size: 21px;
+      margin-bottom: 18px;
+    }
+
+    .benefit-card h3 {
+      font-size: 20px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      margin: 0;
+    }
+
+    .benefit-card p {
+      color: rgba(255,255,255,.66);
+      font-size: 15px;
+      line-height: 1.56;
+      font-weight: 500;
+      margin: 10px 0 0;
+    }
+
+    /* =============================
+       BLACK WAVY FOOTER
+    ============================= */
+    .footer-wave-dark {
+      position: relative;
+      margin-top: 0;
+      background: #050505;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .footer-wave-top {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+      background: var(--cream);
+    }
+
+    .footer-wave-top svg {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+
+    .footer-dark-content {
+      position: relative;
+      z-index: 2;
+      padding: 26px 0 28px;
+    }
+
+    .footer-dark-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .8fr .8fr 1fr;
+      gap: 34px;
+      padding: 26px 0 34px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #103c2d, #0b241c);
+      color: #d9f99d;
+      font-size: 20px;
+      box-shadow: 0 16px 36px rgba(0,0,0,.22);
+    }
+
+    .footer-brand-name {
+      display: block;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: #fff;
+    }
+
+    .footer-brand-caption {
+      display: block;
+      margin-top: 4px;
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      color: rgba(255,255,255,.55);
+    }
+
+    .footer-brand-text {
+      max-width: 340px;
+      margin: 0 0 20px;
+      color: rgba(255,255,255,.68);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .footer-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-socials a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #fff;
+      transition: .22s ease;
+    }
+
+    .footer-socials a:hover {
+      background: #d9f99d;
+      color: #050505;
+      transform: translateY(-2px);
+    }
+
+    .footer-title {
+      margin: 6px 0 16px;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: #fff;
+    }
+
+    .footer-links,
+    .footer-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li,
+    .footer-contact li { margin-bottom: 12px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,.68);
+      font-size: 15px;
+      font-weight: 500;
+      transition: .2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #d9f99d;
+      padding-left: 4px;
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(255,255,255,.68);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .footer-contact i {
+      color: #d9f99d;
+      margin-top: 2px;
+    }
+
+    .footer-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: #d9f99d;
+      color: #050505;
+      font-size: 14px;
+      font-weight: 900;
+      transition: .22s ease;
+    }
+
+    .footer-whatsapp-btn:hover {
+      background: #fff;
+      color: #050505;
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom-dark {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom-dark p {
+      margin: 0;
+      color: rgba(255,255,255,.52);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom-links a {
+      color: rgba(255,255,255,.52);
+      font-size: 13px;
+      font-weight: 500;
+      transition: .2s ease;
+    }
+
+    .footer-bottom-links a:hover { color: #d9f99d; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .72s var(--ease), transform .72s var(--ease);
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-message {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 140;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      border-radius: var(--pill);
+      background: rgba(8,35,27,.96);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 20px 55px rgba(8,35,27,.3);
+      transform: translate(-50%, 140%);
+      transition: .28s var(--ease);
+      white-space: nowrap;
+      max-width: calc(100% - 32px);
+    }
+
+    .toast-message.show { transform: translate(-50%, 0); }
+
+    @media (max-width: 1199px) {
+      .nav-links { display: none; }
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-dark-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 991px) {
+      .mobile-menu { display: grid; }
+      .main-nav { top: 38px; padding: 10px 0 0; }
+      .nav-inner {
+        min-height: 62px;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+      .nav-links { display: none; }
+      .nav-actions .btn-soft-custom,
+      .nav-actions .icon-btn[aria-label="Buscar"] { display: none; }
+      .hero { padding-top: 128px; padding-bottom: 66px; }
+      .hero-grid { grid-template-columns: 1fr; min-height: auto; }
+      .hero-visual { min-height: 460px; }
+      .basket-card { min-height: 420px; }
+      .hero-mini-card { display: none; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .coupon-box { justify-content: flex-start; flex-wrap: wrap; }
+      .promo-slide { grid-template-columns: 1fr; padding: 34px; }
+      .promo-visual { min-height: 230px; }
+      .category-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 767px) {
+      .top-strip { font-size: 11px; line-height: 1.4; }
+      .main-nav { top: 36px; padding: 8px 0 0; }
+      .nav-inner { gap: 10px; }
+      .brand { min-width: 0; height: 50px; }
+      .brand-logo-wrap { height: 50px; max-width: 190px; padding: 6px 10px; border-radius: 18px; }
+      .brand-logo { max-width: 166px; max-height: 39px; }
+      .icon-btn { width: 44px; height: 44px; }
+      .hero-title { font-size: 45px; }
+      .hero-text { font-size: 16px; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .hero-actions a, .hero-actions button { width: 100%; }
+      .hero-proof { display: grid; grid-template-columns: 1fr; }
+      .hero-visual { min-height: 410px; }
+      .basket-card { min-height: 390px; border-radius: 34px; }
+      .hero-product-card { left: 14px; right: 14px; bottom: 14px; border-radius: 24px; padding: 18px; }
+      .offer-banner { margin-top: 0; }
+      .offer-card { padding: 20px; border-radius: 30px; }
+      .offer-content { align-items: flex-start; flex-direction: column; }
+      .slider-section { padding-top: 54px; }
+      .promo-slider { border-radius: 30px; }
+      .promo-slide { min-height: 560px; padding: 26px; align-content: start; }
+      .slider-controls { left: 18px; right: 18px; bottom: 18px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .category-feature { grid-template-columns: 1fr; }
+      .small-category-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-title, .product-desc { min-height: auto; }
+      .benefits-section { padding-top: 92px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .drawer-category-grid { grid-template-columns: 1fr; }
+      .footer-wave-top svg { height: 90px; }
+      .footer-dark-content { padding: 10px 0 24px; }
+      .footer-dark-grid { grid-template-columns: 1fr; gap: 26px; padding: 18px 0 28px; }
+      .footer-bottom-dark { flex-direction: column; align-items: flex-start; }
+      .footer-brand-text { max-width: 100%; }
+      .toast-message { bottom: 18px; font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-page">
+    <div class="top-strip">
+      <span><i class="bi bi-truck"></i> Despacho gratis sobre $24.990 · 10% OFF primera compra · Atención personalizada por WhatsApp</span>
+    </div>
+
+    <header class="main-nav" id="mainNav">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="#" class="brand" aria-label="Natural Telchi">
+            <span class="brand-logo-wrap">
+              <img src="assets/img/logonaturaltelchi" alt="Natural Telchi" class="brand-logo">
+            </span>
+          </a>
+
+          <nav class="nav-links" aria-label="Navegación principal">
+            <a href="#home" class="active">Home</a>
+            <a href="#productos">Tienda</a>
+            <a href="#ofertas">Ofertas</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#beneficios">Beneficios</a>
+          </nav>
+
+          <div class="nav-actions">
+            <a href="https://wa.me/56965140340" target="_blank" class="btn-soft-custom"><i class="bi bi-whatsapp"></i> Asesoría</a>
+            <button class="icon-btn" type="button" aria-label="Buscar"><i class="bi bi-search"></i></button>
+            <button class="icon-btn" type="button" aria-label="Carrito"><i class="bi bi-bag"></i><span class="cart-count" id="cartCount">0</span></button>
+            <button class="icon-btn mobile-menu" type="button" id="openMenu" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menú de navegación">
+      <div class="drawer-head">
+        <img src="assets/img/logonaturaltelchi.png" alt="Natural Telchi" class="drawer-logo">
+        <button class="drawer-close" type="button" id="closeMenu" aria-label="Cerrar menú"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="drawer-body">
+        <p class="drawer-section-label">Navegación</p>
+        <div class="drawer-links">
+          <a class="drawer-link" href="#home">Home <i class="bi bi-arrow-right"></i></a>
+          <a class="drawer-link" href="#productos">Tienda <i class="bi bi-arrow-right"></i></a>
+          <a class="drawer-link" href="#ofertas">Ofertas <i class="bi bi-arrow-right"></i></a>
+          <a class="drawer-link" href="#categorias">Categorías <i class="bi bi-arrow-right"></i></a>
+          <a class="drawer-link" href="#beneficios">Beneficios <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <p class="drawer-section-label">Categorías</p>
+        <div class="drawer-category-grid">
+          <a href="#productos" class="drawer-category">
+            <i class="bi bi-shield-check"></i>
+            <div><strong>Defensas</strong><span>Vitamina C, Zinc y packs</span></div>
+          </a>
+          <a href="#productos" class="drawer-category">
+            <i class="bi bi-lightning-charge"></i>
+            <div><strong>Magnesios</strong><span>Energía y bienestar</span></div>
+          </a>
+          <a href="#productos" class="drawer-category">
+            <i class="bi bi-droplet"></i>
+            <div><strong>Detox</strong><span>Digestión y equilibrio</span></div>
+          </a>
+          <a href="#productos" class="drawer-category">
+            <i class="bi bi-stars"></i>
+            <div><strong>Belleza</strong><span>Piel, pelo y uñas</span></div>
+          </a>
+          <a href="#productos" class="drawer-category">
+            <i class="bi bi-bullseye"></i>
+            <div><strong>Concentración</strong><span>Foco y memoria</span></div>
+          </a>
+          <a href="#ofertas" class="drawer-category">
+            <i class="bi bi-percent"></i>
+            <div><strong>Ofertas</strong><span>Packs con descuento</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="drawer-footer">
+        <a href="https://wa.me/56965140340" target="_blank" class="btn-primary-custom w-100"><i class="bi bi-whatsapp"></i> Pedir asesoría</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="hero" id="home">
+        <i class="bi bi-leaf floating-leaf leaf-1"></i>
+        <i class="bi bi-flower1 floating-leaf leaf-2"></i>
+        <i class="bi bi-leaf floating-leaf leaf-3"></i>
+
+        <div class="container">
+          <div class="hero-grid">
+            <div class="fade-up">
+              <div class="hero-kicker"><i class="bi bi-stars"></i> Suplementos naturales en Chile</div>
+              <h1 class="hero-title">Bienestar natural para una rutina <span>más consciente.</span></h1>
+              <p class="hero-text">Cápsulas vegetales, packs funcionales y suplementos pensados para defensas, energía, foco, digestión y belleza. Compra rápido, seguro y con asesoría.</p>
+              <div class="hero-actions">
+                <a href="#productos" class="btn-primary-custom">Comprar ahora <i class="bi bi-arrow-right"></i></a>
+                <a href="#ofertas" class="btn-soft-custom">Ver ofertas</a>
+              </div>
+              <div class="hero-proof">
+                <span class="proof-pill"><i class="bi bi-shield-check"></i> Compra segura</span>
+                <span class="proof-pill"><i class="bi bi-truck"></i> Despacho nacional</span>
+                <span class="proof-pill"><i class="bi bi-whatsapp"></i> Asesoría real</span>
+              </div>
+            </div>
+
+            <div class="hero-visual ">
+              <div class="hero-mini-card mini-a">
+                <i class="bi bi-heart-pulse"></i>
+                <div><strong>Rutinas simples</strong><span>Compra por objetivo</span></div>
+              </div>
+
+              <div class="hero-mini-card mini-b">
+                <i class="bi bi-bag-check"></i>
+                <div><strong>Pack destacado</strong><span>Oferta activa</span></div>
+              </div>
+
+              <div class="basket-card" id="basketCard">
+                <img class="basket-img" src="assets/img/Gemini_Generated_Image_8nh9s78nh9s78nh9 (1).png" alt="Canasta natural con productos saludables">
+                <div class="hero-product-card">
+                  <div class="d-flex align-items-start justify-content-between gap-3">
+                    <div>
+                      <p class="label">Pack recomendado</p>
+                      <h3>Defensas naturales</h3>
+                      <p>Vitamina C, Magnesio y Zinc en una rutina simple para el cuidado diario.</p>
+                    </div>
+                    <span class="discount-badge">-20%</span>
+                  </div>
+                  <button class="btn-primary-custom w-100 mt-3" type="button" data-add-cart="Pack Defensas">Agregar al carrito</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="offer-banner" id="ofertas">
+        <div class="container">
+          <div class="offer-card fade-up">
+            <div class="offer-grid">
+              <div class="offer-content">
+                <div class="offer-icon"><i class="bi bi-percent"></i></div>
+                <div>
+                  <h2>Oferta especial de bienvenida</h2>
+                  <p>Activa un 10% OFF en tu primera compra y despacho gratis sobre el mínimo. Ideal para impulsar conversión desde el Home.</p>
+                </div>
+              </div>
+              <div class="coupon-box">
+                <span class="coupon-code">NATURAL10</span>
+                <a href="#productos" class="btn-primary-custom">Comprar ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slider-section">
+        <div class="container">
+          <div class="section-head fade-up">
+            <div>
+              <p class="section-label">Banners destacados</p>
+              <h2 class="section-title">Promociones que guían la compra.</h2>
+            </div>
+            <p class="section-text">Tres banners tipo slider para comunicar ofertas, packs destacados y compra mayorista sin saturar el diseño.</p>
+          </div>
+
+          <div class="promo-slider fade-up" id="promoSlider">
+            <div class="promo-track" id="promoTrack">
+              <article class="promo-slide slide-1">
+                <div class="promo-copy">
+                  <span class="promo-badge"><i class="bi bi-lightning-charge"></i> Oferta activa</span>
+                  <h2>Pack Defensas con 20% OFF</h2>
+                  <p>Vitamina C, Zinc y Magnesio para una rutina simple de cuidado diario. Comunica valor rápido y directo.</p>
+                  <a href="#productos" class="btn-primary-custom mt-4">Comprar pack</a>
+                </div>
+                <div class="promo-visual">
+                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=900&auto=format&fit=crop" alt="Pack defensas">
+                </div>
+              </article>
+
+              <article class="promo-slide slide-2">
+                <div class="promo-copy">
+                  <span class="promo-badge"><i class="bi bi-flower1"></i> Belleza natural</span>
+                  <h2>Rutina Beauty desde el interior</h2>
+                  <p>Productos pensados para cuidado personal, antioxidantes y bienestar integral con estética premium.</p>
+                  <a href="#productos" class="btn-primary-custom mt-4">Ver belleza</a>
+                </div>
+                <div class="promo-visual">
+                  <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=900&auto=format&fit=crop" alt="Rutina belleza natural">
+                </div>
+              </article>
+
+              <article class="promo-slide slide-3">
+                <div class="promo-copy">
+                  <span class="promo-badge"><i class="bi bi-shop"></i> Mayoristas</span>
+                  <h2>Compra al por mayor para tiendas</h2>
+                  <p>Una llamada visual para distribuidores, farmacias naturales y tiendas que buscan condiciones comerciales.</p>
+                  <a href="#beneficios" class="btn-primary-custom mt-4">Solicitar información</a>
+                </div>
+                <div class="promo-visual">
+                  <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=900&auto=format&fit=crop" alt="Compra mayorista">
+                </div>
+              </article>
+            </div>
+
+            <div class="slider-controls">
+              <div class="slider-dots" id="sliderDots">
+                <button class="slider-dot active" type="button" data-slide="0" aria-label="Slide 1"></button>
+                <button class="slider-dot" type="button" data-slide="1" aria-label="Slide 2"></button>
+                <button class="slider-dot" type="button" data-slide="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="slider-arrows">
+                <button class="slider-arrow" type="button" id="prevSlide" aria-label="Anterior"><i class="bi bi-arrow-left"></i></button>
+                <button class="slider-arrow" type="button" id="nextSlide" aria-label="Siguiente"><i class="bi bi-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-padding" id="categorias">
+        <div class="container">
+          <div class="section-head fade-up">
+            <div>
+              <p class="section-label">Compra por objetivo</p>
+              <h2 class="section-title">Categorías claras, visuales y fáciles de entender.</h2>
+            </div>
+            <a href="#productos" class="btn-soft-custom">Ver tienda</a>
+          </div>
+
+          <div class="category-grid fade-up">
+            <article class="category-feature">
+              <div class="category-copy">
+                <p class="section-label">Defensas</p>
+                <h3>Rutinas para cuidado diario</h3>
+                <p>Vitamina C, Zinc, Magnesio y packs diseñados para apoyar una rutina saludable.</p>
+                <a href="#productos" class="btn-primary-custom mt-4 w-fit">Comprar defensas</a>
+              </div>
+              <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?q=80&w=900&auto=format&fit=crop" alt="Categoría defensas">
+              </div>
+            </article>
+
+            <div class="small-category-grid">
+              <article class="category-card">
+                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=800&auto=format&fit=crop" alt="Magnesios">
+                <div>
+                  <h3>Magnesios</h3>
+                  <p>Energía, descanso y bienestar muscular.</p>
+                </div>
+              </article>
+              <article class="category-card">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop" alt="Belleza natural">
+                <div>
+                  <h3>Belleza</h3>
+                  <p>Cuidado interno para piel, pelo y uñas.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-padding pt-0" id="productos">
+        <div class="container">
+          <div class="section-head fade-up">
+            <div>
+              <p class="section-label">Productos destacados</p>
+              <h2 class="section-title">Los más recomendados.</h2>
+            </div>
+            <a href="#" class="btn-soft-custom">Ver todos</a>
+          </div>
+
+          <div class="product-grid fade-up">
+            <article class="product-card">
+              <div class="product-media">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=900&auto=format&fit=crop" alt="Pack Defensas">
+                <span class="product-tag">Oferta</span>
+                <span class="product-discount">-20%</span>
+              </div>
+              <div class="product-body">
+                <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="product-category">Defensas</p>
+                <h3 class="product-title">Pack Defensas</h3>
+                <p class="product-desc">Vitamina C + Magnesio + Zinc.</p>
+                <div class="product-bottom">
+                  <div><span class="price-old">$33.970</span><span class="price-now">$27.176</span></div>
+                  <button class="add-btn" type="button" data-add-cart="Pack Defensas"><i class="bi bi-bag"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=900&auto=format&fit=crop" alt="Tetr4Magnesio">
+                <span class="product-tag">Top ventas</span>
+              </div>
+              <div class="product-body">
+                <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="product-category">Magnesios</p>
+                <h3 class="product-title">Tetr4Magnesio</h3>
+                <p class="product-desc">120 cápsulas para bienestar diario.</p>
+                <div class="product-bottom">
+                  <div><span class="price-now">$29.990</span></div>
+                  <button class="add-btn" type="button" data-add-cart="Tetr4Magnesio"><i class="bi bi-bag"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=900&auto=format&fit=crop" alt="Berberina">
+                <span class="product-tag">Natural</span>
+              </div>
+              <div class="product-body">
+                <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="product-category">Detox</p>
+                <h3 class="product-title">Berberina</h3>
+                <p class="product-desc">Extracto vegetal en 60 cápsulas.</p>
+                <div class="product-bottom">
+                  <div><span class="price-now">$17.900</span></div>
+                  <button class="add-btn" type="button" data-add-cart="Berberina"><i class="bi bi-bag"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=900&auto=format&fit=crop" alt="Beauty Complex">
+                <span class="product-tag">Beauty</span>
+                <span class="product-discount">-12%</span>
+              </div>
+              <div class="product-body">
+                <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="product-category">Belleza</p>
+                <h3 class="product-title">Beauty Complex</h3>
+                <p class="product-desc">Rutina para piel, pelo y uñas.</p>
+                <div class="product-bottom">
+                  <div><span class="price-old">$24.990</span><span class="price-now">$21.990</span></div>
+                  <button class="add-btn" type="button" data-add-cart="Beauty Complex"><i class="bi bi-bag"></i></button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits-section" id="beneficios">
+        <div class="container">
+          <div class="benefits-grid fade-up">
+            <article class="benefit-card featured">
+              <i class="bi bi-leaf"></i>
+              <h3>Natural, claro y confiable</h3>
+              <p>Una propuesta visual pensada para comunicar bienestar sin perder profesionalismo ni sensación ecommerce.</p>
+            </article>
+            <article class="benefit-card">
+              <i class="bi bi-phone"></i>
+              <h3>Mobile first</h3>
+              <p>Diseño pensado para que el cliente compre cómodo desde el teléfono.</p>
+            </article>
+            <article class="benefit-card">
+              <i class="bi bi-bag-check"></i>
+              <h3>Compra simple</h3>
+              <p>Botones claros, ofertas visibles y llamadas a la acción en zonas clave.</p>
+            </article>
+            <article class="benefit-card">
+              <i class="bi bi-whatsapp"></i>
+              <h3>Asesoría directa</h3>
+              <p>Acceso rápido a WhatsApp para resolver dudas y mejorar conversión.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-wave-dark">
+      <div class="footer-wave-top" aria-hidden="true">
+        <svg viewBox="0 0 1440 170" preserveAspectRatio="none">
+          <path fill="#050505" d="M0,96L48,90.7C96,85,192,75,288,80C384,85,480,107,576,112C672,117,768,107,864,90.7C960,75,1056,53,1152,53.3C1248,53,1344,75,1392,85.3L1440,96L1440,170L1392,170C1344,170,1248,170,1152,170C1056,170,960,170,864,170C768,170,672,170,576,170C480,170,384,170,288,170C192,170,96,170,48,170L0,170Z"></path>
+        </svg>
+      </div>
+
+      <div class="container footer-dark-content">
+        <div class="footer-dark-grid">
+          <div class="footer-brand-block">
+            <a href="#" class="footer-brand">
+              <span class="footer-brand-icon"><i class="bi bi-leaf"></i></span>
+              <span>
+                <span class="footer-brand-name">Natural Telchi</span>
+                <span class="footer-brand-caption">Farmacia natural</span>
+              </span>
+            </a>
+
+            <p class="footer-brand-text">
+              Suplementos naturales, cápsulas y productos para bienestar diario. Una experiencia de compra moderna, clara y confiable.
+            </p>
+
+            <div class="footer-socials">
+              <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://wa.me/56965140340" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+              <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#productos">Tienda</a></li>
+              <li><a href="#ofertas">Ofertas</a></li>
+              <li><a href="#categorias">Categorías</a></li>
+              <li><a href="#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Ayuda</h4>
+            <ul class="footer-links">
+              <li><a href="#">Despachos</a></li>
+              <li><a href="#">Métodos de pago</a></li>
+              <li><a href="#">Términos y condiciones</a></li>
+              <li><a href="#">Política de cambios</a></li>
+              <li><a href="#">Mayoristas</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Contacto</h4>
+            <ul class="footer-contact">
+              <li><i class="bi bi-geo-alt"></i> Freire 361, San Bernardo</li>
+              <li><i class="bi bi-telephone"></i> +56 9 6514 0340</li>
+              <li><i class="bi bi-envelope"></i> contacto@naturaltelchi.com</li>
+              <li><i class="bi bi-clock"></i> Lunes a sábado · 09:00 a 19:00</li>
+            </ul>
+
+            <a href="https://wa.me/56965140340" target="_blank" class="footer-whatsapp-btn">
+              <i class="bi bi-whatsapp"></i> Hablar por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom-dark">
+          <p>© 2026 Natural Telchi. Todos los derechos reservados.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacidad</a>
+            <a href="#">Términos</a>
+            <a href="#">Libro de reclamos</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast-message" id="toast"><i class="bi bi-check-circle-fill"></i><span>Producto agregado</span></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const nav = document.getElementById("mainNav");
+    const basketCard = document.getElementById("basketCard");
+    const promoTrack = document.getElementById("promoTrack");
+    const dots = [...document.querySelectorAll(".slider-dot")];
+    const toast = document.getElementById("toast");
+    const cartCount = document.getElementById("cartCount");
+    const mobileMenuBtn = document.getElementById("openMenu");
+    const mobileDrawer = document.getElementById("mobileDrawer");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const closeMenuBtn = document.getElementById("closeMenu");
+
+    let currentSlide = 0;
+    let cartItems = 0;
+    let autoSlide;
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 24);
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: .12 });
+
+    document.querySelectorAll(".fade-up").forEach(element => revealObserver.observe(element));
+
+    if (basketCard && window.matchMedia("(pointer: fine)").matches) {
+      basketCard.addEventListener("mousemove", event => {
+        const rect = basketCard.getBoundingClientRect();
+        const rotateX = ((event.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -4;
+        const rotateY = ((event.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
+        basketCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+      });
+      basketCard.addEventListener("mouseleave", () => {
+        basketCard.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0)";
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlide = (index + 3) % 3;
+      promoTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
+    }
+
+    function startAutoSlide() {
+      clearInterval(autoSlide);
+      autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5200);
+    }
+
+    document.getElementById("nextSlide").addEventListener("click", () => {
+      goToSlide(currentSlide + 1);
+      startAutoSlide();
+    });
+
+    document.getElementById("prevSlide").addEventListener("click", () => {
+      goToSlide(currentSlide - 1);
+      startAutoSlide();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        goToSlide(Number(dot.dataset.slide));
+        startAutoSlide();
+      });
+    });
+
+    function showToast(message) {
+      toast.querySelector("span").textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    document.querySelectorAll("[data-add-cart]").forEach(button => {
+      button.addEventListener("click", () => {
+        cartItems += 1;
+        cartCount.textContent = cartItems;
+        showToast(`${button.dataset.addCart} agregado al carrito`);
+      });
+    });
+
+    function openMobileMenu() {
+      mobileDrawer.classList.add("show");
+      menuOverlay.classList.add("show");
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMobileMenu() {
+      mobileDrawer.classList.remove("show");
+      menuOverlay.classList.remove("show");
+      document.body.classList.remove("menu-open");
+    }
+
+    mobileMenuBtn.addEventListener("click", openMobileMenu);
+    closeMenuBtn.addEventListener("click", closeMobileMenu);
+    menuOverlay.addEventListener("click", closeMobileMenu);
+
+    document.querySelectorAll(".drawer-link, .drawer-category").forEach(link => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMobileMenu();
+    });
+
+    startAutoSlide();
+  </script>
+</body>
+</html>
